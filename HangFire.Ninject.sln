@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangFire.Ninject", "HangFire.Ninject\HangFire.Ninject.csproj", "{3AAA889A-7C92-4AC3-9017-5CE20A767063}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangFire.Ninject.Tests", "HangFire.Ninject.Tests\HangFire.Ninject.Tests.csproj", "{D8CD1087-F35E-4E9F-9225-B2451FC63D80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3AAA889A-7C92-4AC3-9017-5CE20A767063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AAA889A-7C92-4AC3-9017-5CE20A767063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AAA889A-7C92-4AC3-9017-5CE20A767063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AAA889A-7C92-4AC3-9017-5CE20A767063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8CD1087-F35E-4E9F-9225-B2451FC63D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CD1087-F35E-4E9F-9225-B2451FC63D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CD1087-F35E-4E9F-9225-B2451FC63D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CD1087-F35E-4E9F-9225-B2451FC63D80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
