@@ -1,6 +1,8 @@
 HangFire.Ninject
 ================
 
+[![Build status](https://ci.appveyor.com/api/projects/status/33ex2w47jkaakggi)](https://ci.appveyor.com/project/odinserj/hangfire-ninject)
+
 [HangFire](http://hangfire.io) background job activator based on 
 [Ninject](http://ninject.org) IoC Container. It allows you to use instance
 methods of classes that define parametrized constructors:
