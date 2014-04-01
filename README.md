@@ -2,7 +2,33 @@ HangFire.Ninject
 ================
 
 [HangFire](http://hangfire.io) background job activator based on 
-[Ninject](http://ninject.org) IoC Container.
+[Ninject](http://ninject.org) IoC Container. It allows you to use instance
+methods of classes that define parametrized constructors:
+
+```csharp
+public class EmailService
+{
+	private DbContext _context;
+    private IEmailSender _sender;
+	
+	public EmailService(DbContext context, IEmailSender sender)
+	{
+		_context = context;
+		_sender = sender;
+	}
+	
+	public void Send(int userId, string message)
+	{
+		var user = _context.Users.Get(userId);
+		_sender.Send(user.Email, message);
+	}
+}	
+
+// Somewhere in the code
+BackgroundJob.Enqueue<EmailService>(x => x.Send(1, "Hello, world!"));
+```
+
+Improve the testability of your jobs without static factories!
 
 Installation
 --------------
