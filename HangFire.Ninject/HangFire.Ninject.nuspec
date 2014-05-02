@@ -3,7 +3,7 @@
   <metadata>
     <id>HangFire.Ninject</id>
     <version>$version$</version>
-    <title>HangFire.Ninject</title>
+    <title>HangFire Ninject Integration</title>
     <authors>Sergey Odinokov</authors>
     <owners>odinserj</owners>
     <projectUrl>https://github.com/odinserj/HangFire.Ninject</projectUrl>
