@@ -58,7 +58,7 @@ public partial class MyApplication : System.Web.HttpApplication
 		/* Register types */
 		/* kernel.Bind<SomeInterface>().To<SomeImplementation>(); */
 		
-		JobActivator.SetCurrent(new NinjectJobActivator(kernel));
+		JobActivator.Current = new NinjectJobActivator(kernel);
     }
 }
 ```
