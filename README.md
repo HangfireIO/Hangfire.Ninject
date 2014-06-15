@@ -72,9 +72,6 @@ public class Startup
 
 Pass an instance of the `NinjectJobActivator` class to the global job activator somewhere in application initialization logic:
 
-In order to use the library, you should register it as your
-JobActivator class:
-
 ```csharp
 var kernel = new StandardKernel();
 /* Register types */
