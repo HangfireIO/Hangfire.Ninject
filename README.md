@@ -45,7 +45,7 @@ Install-Package HangFire.Ninject
 Usage
 ------
 
-**Web application**
+### Web application
 
 Update your OWIN Startup class with the following lines:
 
@@ -68,7 +68,7 @@ public class Startup
 }
 ```
 
-**Other application types**
+### Other application types
 
 Pass an instance of the `NinjectJobActivator` class to the global job activator somewhere in application initialization logic:
 
