@@ -41,5 +41,16 @@ namespace HangFire.Ninject.Tests
 
             Assert.AreEqual("called", result);
         }
+
+        [TestMethod]
+        public void UseNinjectActivator_PassesCorrectActivator()
+        {
+            var configuration = new Mock<IBootstrapperConfiguration>();
+            var kernel = new Mock<IKernel>();
+
+            configuration.Object.UseNinjectActivator(kernel.Object);
+
+            configuration.Verify(x => x.UseActivator(It.IsAny<NinjectJobActivator>()));
+        }
     }
 }
