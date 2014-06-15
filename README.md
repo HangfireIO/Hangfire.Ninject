@@ -30,7 +30,7 @@ public class EmailService
 BackgroundJob.Enqueue<EmailService>(x => x.Send(1, "Hello, world!"));
 ```
 
-Improve the testability of your jobs without static factories!
+Improve the testability of your jobs without using static factories!
 
 Installation
 --------------
@@ -45,22 +45,39 @@ Install-Package HangFire.Ninject
 Usage
 ------
 
-In order to use the library, you should register it as your
-JobActivator class:
+### Web application
+
+Update your OWIN Startup class with the following lines:
 
 ```csharp
-// Global.asax.cs or other file that initializes Ninject bindings.
-public partial class MyApplication : System.Web.HttpApplication
+public class Startup
 {
-    protected void Application_Start()
+    public void Configure(IAppBuilder app)
     {
-		var kernel = new StandardKernel();
-		/* Register types */
-		/* kernel.Bind<SomeInterface>().To<SomeImplementation>(); */
-		
-		JobActivator.Current = new NinjectJobActivator(kernel);
+        app.UseHangFire(config =>
+        {
+            var kernel = new StandardKernel();
+            /* Register types */
+            /* kernel.Bind<SomeInterface>().To<SomeImplementation>(); */
+            
+            config.UseNinjectActivator(kernel);
+        
+            // Other configuration actions
+        });
     }
 }
+```
+
+### Other application types
+
+Pass an instance of the `NinjectJobActivator` class to the global job activator somewhere in application initialization logic:
+
+```csharp
+var kernel = new StandardKernel();
+/* Register types */
+/* kernel.Bind<SomeInterface>().To<SomeImplementation>(); */
+		
+JobActivator.Current = new NinjectJobActivator(kernel);
 ```
 
 HTTP Request warnings
