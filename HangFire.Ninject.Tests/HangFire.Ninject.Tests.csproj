@@ -6,8 +6,8 @@
     <ProjectGuid>{D8CD1087-F35E-4E9F-9225-B2451FC63D80}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HangFire.Ninject.Tests</RootNamespace>
-    <AssemblyName>HangFire.Ninject.Tests</AssemblyName>
+    <RootNamespace>Hangfire.Ninject.Tests</RootNamespace>
+    <AssemblyName>Hangfire.Ninject.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
