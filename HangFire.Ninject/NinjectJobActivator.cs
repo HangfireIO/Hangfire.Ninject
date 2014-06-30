@@ -1,7 +1,7 @@
 ﻿using System;
 using Ninject;
 
-namespace HangFire
+namespace Hangfire
 {
     /// <summary>
     /// HangFire Job Activator based on Ninject IoC Container.

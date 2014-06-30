@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Ninject;
 
-namespace HangFire.Ninject.Tests
+namespace Hangfire.Ninject.Tests
 {
     [TestClass]
     public class NinjectJobActivatorTests

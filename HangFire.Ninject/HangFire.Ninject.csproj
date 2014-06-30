@@ -7,8 +7,8 @@
     <ProjectGuid>{3AAA889A-7C92-4AC3-9017-5CE20A767063}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HangFire</RootNamespace>
-    <AssemblyName>HangFire.Ninject</AssemblyName>
+    <RootNamespace>Hangfire</RootNamespace>
+    <AssemblyName>Hangfire.Ninject</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\HangFire.Ninject.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\Hangfire.Ninject.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>

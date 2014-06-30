@@ -88,9 +88,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HangFire.Ninject\HangFire.Ninject.csproj">
+    <ProjectReference Include="..\HangFire.Ninject\Hangfire.Ninject.csproj">
       <Project>{3aaa889a-7c92-4ac3-9017-5ce20a767063}</Project>
-      <Name>HangFire.Ninject</Name>
+      <Name>Hangfire.Ninject</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

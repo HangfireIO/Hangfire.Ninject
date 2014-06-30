@@ -1,6 +1,6 @@
 ﻿using Ninject;
 
-namespace HangFire
+namespace Hangfire
 {
     public static class NinjectBootstrapperConfigurationExtensions
     {
