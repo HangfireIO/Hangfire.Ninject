@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Hangfire.Ninject")]
 [assembly: AssemblyDescription("Ninject IoC Container support for Hangfire (background job system for ASP.NET applications).")]
 [assembly: AssemblyProduct("Hangfire")]
-[assembly: AssemblyCopyright("Copyright © 2014 Sergey Odinokov")]
+[assembly: AssemblyCopyright("Copyright © 2014-2015 Sergey Odinokov")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -17,6 +17,6 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("91f25a4e-65e7-4d9c-886e-33a6c82b14c4")]
 
-[assembly: AssemblyInformationalVersion("1.0.0")]
-[assembly: AssemblyVersion("1.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.1.0")]
+[assembly: AssemblyVersion("1.1.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
