@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ninject;
+using Ninject.Activation.Caching;
+using Ninject.Infrastructure;
 
 namespace Hangfire
 {
@@ -27,6 +30,31 @@ namespace Hangfire
         public override object ActivateJob(Type jobType)
         {
             return _kernel.Get(jobType);
+        }
+
+        public override JobActivatorScope BeginScope()
+        {
+            return new NinjectScope(_kernel);
+        }
+
+        class NinjectScope : JobActivatorScope
+        {
+            private readonly IKernel _kernel;
+
+            public NinjectScope(IKernel kernel)
+            {
+                _kernel = kernel;
+            }
+
+            public override object Resolve(Type type)
+            {
+                return _kernel.Get(type);
+            }
+
+            public override void DisposeScope()
+            {
+                _kernel.Components.Get<ICache>().Clear(JobActivatorScope.Current);
+            }
         }
     }
 }
