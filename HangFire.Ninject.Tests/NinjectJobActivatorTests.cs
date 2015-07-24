@@ -111,10 +111,25 @@ namespace Hangfire.Ninject.Tests
         }
 
         [TestMethod]
-        public void InstanceRegisteredWith_InstancePerBackgroundJob_IsDisposedOnScopeDisposal()
+        public void InstanceRegisteredWith_InBackgroundJobScope_IsDisposedOnScopeDisposal()
         {
             var disposable = new Disposable();
             _kernel.Bind<Disposable>().ToMethod(c => disposable).InBackgroundJobScope();
+            var activator = CreateActivator();
+
+            using (var scope = activator.BeginScope())
+            {
+                var instance = scope.Resolve(typeof(Disposable));
+            }
+
+            Assert.IsTrue(disposable.Disposed);
+        }
+
+        [TestMethod]
+        public void InstanceRegisteredWith_InRequestOrBackgroundJobScope_IsDisposedOnScopeDisposal()
+        {
+            var disposable = new Disposable();
+            _kernel.Bind<Disposable>().ToMethod(c => disposable).InRequestOrBackgroundJobScope();
             var activator = CreateActivator();
 
             using (var scope = activator.BeginScope())
