@@ -38,10 +38,16 @@ kernel.Bind<Database>().ToSelf().InBackgroundJobScope();
 
 ### Multiple Scopes/Bindings
 
-It is probably that you want to define multiple scopes for your unit-of-work dependencies, one for HTTP request. If you want to use one binding for both HTTP request and background job, please use the following method:
+It's likely that you want to define multiple scopes for your unit-of-work dependencies, one for HTTP request, etc. If you want to use one binding for both these objects and background jobs, please use the following method:
 
 ```csharp
-kernel.Bind<JobClass>().ToSelf().InRequestOrBackgroundJobScope();
+kernel.Bind<JobClass>().ToSelf().InNamedOrBackgroundJobScope(context=> scopeObject);
+```
+
+If you are using InRequestScope and want to use one binding for both HTTP request and background job you need to add your own callback to determine if the HttpContext is still valid.
+
+```csharp
+kernel.Bind<JobClass>().ToSelf().InNamedOrBackgroundJobScope(context => context.Kernel.Components.GetAll<INinjectHttpApplicationPlugin>().Select(c => c.GetRequestScope(context)).FirstOrDefault(s => s != null));
 ```
 
 If you are using other scopes in your application, you can construct your own scopes. For example, if you want to define a binding in a background job scope with fallback to thread scope, please use the Ninject's `InScope` method:
