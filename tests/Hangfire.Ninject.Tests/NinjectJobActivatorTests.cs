@@ -1,37 +1,29 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using Moq;
 using Ninject;
+using Xunit;
 
 namespace Hangfire.Ninject.Tests
 {
-    [TestClass]
     public class NinjectJobActivatorTests
     {
-        private IKernel _kernel;
+        private readonly IKernel _kernel = new StandardKernel();
 
-        [TestInitialize]
-        public void SetUp()
-        {
-            _kernel = new StandardKernel();
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Fact]
         public void Ctor_ThrowsAnException_WhenKernelIsNull()
         {
-// ReSharper disable once UnusedVariable
-            var activator = new NinjectJobActivator(null);
+            var exception = Assert.Throws<ArgumentNullException>(() => new NinjectJobActivator(null));
+            Assert.Equal("kernel", exception.ParamName);
         }
 
-        [TestMethod]
+        [Fact]
         public void Class_IsBasedOnJobActivator()
         {
             var activator = CreateActivator();
-            Assert.IsInstanceOfType(activator, typeof(JobActivator));
+            Assert.IsAssignableFrom<JobActivator>(activator);
         }
 
-        [TestMethod]
+        [Fact]
         public void ActivateJob_CallsNinject()
         {
             _kernel.Bind<string>().ToConstant("called");
@@ -39,10 +31,10 @@ namespace Hangfire.Ninject.Tests
 
             var result = activator.ActivateJob(typeof (string));
 
-            Assert.AreEqual("called", result);
+            Assert.Equal("called", result);
         }
 
-        [TestMethod]
+        [Fact]
         public void InstanceRegisteredWith_TransientScope_IsNotDisposedOnScopeDisposal()
         {
             var disposable = new Disposable();
@@ -52,13 +44,14 @@ namespace Hangfire.Ninject.Tests
             using (var scope = activator.BeginScope())
             {
                 var instance = scope.Resolve(typeof(Disposable));
-                Assert.IsFalse(disposable.Disposed);
+                Assert.NotNull(instance);
+                Assert.False(disposable.Disposed);
             }
 
-            Assert.IsFalse(disposable.Disposed);
+            Assert.False(disposable.Disposed);
         }
 
-        [TestMethod]
+        [Fact]
         public void InstanceRegisteredWith_SingletonScope_IsNotDisposedOnScopeDisposal()
         {
             var disposable = new Disposable();
@@ -68,13 +61,14 @@ namespace Hangfire.Ninject.Tests
             using (var scope = activator.BeginScope())
             {
                 var instance = scope.Resolve(typeof(Disposable));
-                Assert.IsFalse(disposable.Disposed);
+                Assert.NotNull(instance);
+                Assert.False(disposable.Disposed);
             }
 
-            Assert.IsFalse(disposable.Disposed);
+            Assert.False(disposable.Disposed);
         }
 
-        [TestMethod]
+        [Fact]
         public void InBackgroundJobScope_RegistersSameServiceInstance_ForTheSameScopeInstance()
         {
             _kernel.Bind<object>().ToMethod(c => new object()).InBackgroundJobScope();
@@ -85,11 +79,11 @@ namespace Hangfire.Ninject.Tests
                 var instance1 = scope.Resolve(typeof(object));
                 var instance2 = scope.Resolve(typeof(object));
 
-                Assert.AreSame(instance1, instance2);
+                Assert.Same(instance1, instance2);
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void InBackgroundJobScope_RegistersDifferentServiceInstances_ForDifferentScopeInstances()
         {
             _kernel.Bind<object>().ToMethod(c => new object()).InBackgroundJobScope();
@@ -107,10 +101,10 @@ namespace Hangfire.Ninject.Tests
                 instance2 = scope2.Resolve(typeof(object));
             }
 
-            Assert.AreNotSame(instance1, instance2);
+            Assert.NotSame(instance1, instance2);
         }
 
-        [TestMethod]
+        [Fact]
         public void InstanceRegisteredWith_InBackgroundJobScope_IsDisposedOnScopeDisposal()
         {
             var disposable = new Disposable();
@@ -120,27 +114,31 @@ namespace Hangfire.Ninject.Tests
             using (var scope = activator.BeginScope())
             {
                 var instance = scope.Resolve(typeof(Disposable));
+                Assert.NotNull(instance);
             }
 
-            Assert.IsTrue(disposable.Disposed);
+            Assert.True(disposable.Disposed);
         }
 
-        [TestMethod]
+        [Fact]
         public void InstanceRegisteredWith_InNamedOrBackgroundJobScope_IsDisposedOnScopeDisposal()
         {
             var disposable = new Disposable();
             var activator = CreateActivator();
             using (var scope = activator.BeginScope())
             {
-            _kernel.Bind<Disposable>().ToMethod(c => disposable).InNamedOrBackgroundJobScope(ctx=>scope);
+                // ReSharper disable once AccessToDisposedClosure
+                _kernel.Bind<Disposable>().ToMethod(c => disposable).InNamedOrBackgroundJobScope(ctx => scope);
 
                 var instance = scope.Resolve(typeof(Disposable));
+                Assert.NotNull(instance);
             }
 
-            Assert.IsTrue(disposable.Disposed);
+            Assert.True(disposable.Disposed);
         }
 
-        [TestMethod]
+#pragma warning disable CS0618 // Type or member is obsolete
+        [Fact]
         public void UseNinjectActivator_PassesCorrectActivator()
         {
             var configuration = new Mock<IBootstrapperConfiguration>();
@@ -150,13 +148,14 @@ namespace Hangfire.Ninject.Tests
 
             configuration.Verify(x => x.UseActivator(It.IsAny<NinjectJobActivator>()));
         }
+#pragma warning restore CS0618 // Type or member is obsolete
 
         private NinjectJobActivator CreateActivator()
         {
             return new NinjectJobActivator(_kernel);
         }
 
-        class Disposable : IDisposable
+        private class Disposable : IDisposable
         {
             public bool Disposed { get; set; }
 

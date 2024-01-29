@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Ninject;
 using Ninject.Activation.Caching;
@@ -21,9 +21,7 @@ namespace Hangfire
         /// of classes during job activation process.</param>
         public NinjectJobActivator(IKernel kernel)
         {
-            if (kernel == null) throw new ArgumentNullException("kernel");
-
-            _kernel = kernel;
+            _kernel = kernel ?? throw new ArgumentNullException(nameof(kernel));
         }
 
         /// <inheritdoc />

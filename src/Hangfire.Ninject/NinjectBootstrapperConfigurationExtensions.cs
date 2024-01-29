@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Ninject;
 
 namespace Hangfire
@@ -16,6 +16,7 @@ namespace Hangfire
             this IBootstrapperConfiguration configuration,
             IKernel kernel)
         {
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
             configuration.UseActivator(new NinjectJobActivator(kernel));
         }
     }

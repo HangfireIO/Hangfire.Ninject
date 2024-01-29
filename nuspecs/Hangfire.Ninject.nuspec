@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Hangfire.Ninject</id>
+    <version>%version%</version>
+    <title>Hangfire Ninject Integration</title>
+    <authors>Sergey Odinokov</authors>
+    <owners>odinserj</owners>
+    <projectUrl>https://github.com/HangfireIO/Hangfire.Ninject</projectUrl>
+    <repository type="git" url="https://github.com/HangfireIO/Hangfire.Ninject.git" commit="%commit%" />
+    <license type="expression">MIT</license>
+    <description>Ninject IoC Container support for Hangfire (background job framework for .NET applications)</description>
+    <copyright>Copyright © 2014-2024 Hangfire OÜ</copyright>
+    <tags>Hangfire Ninject IoC</tags>
+    <dependencies>
+      <group targetFramework="net45">
+        <dependency id="Ninject" version="2.0.1.0" />
+        <dependency id="Hangfire.Core" version="1.5.0" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="net45\Hangfire.Ninject.dll" target="lib\net45" />
+    <file src="net45\Hangfire.Ninject.xml" target="lib\net45" />
+
+    <file src="LICENSE" />
+  </files>
+</package>

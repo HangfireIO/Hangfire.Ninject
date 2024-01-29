@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Hangfire.Annotations;
 using Ninject;
 
@@ -10,8 +10,8 @@ namespace Hangfire
             [NotNull] this IGlobalConfiguration configuration, 
             [NotNull] IKernel kernel)
         {
-            if (configuration == null) throw new ArgumentNullException("configuration");
-            if (kernel == null) throw new ArgumentNullException("kernel");
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+            if (kernel == null) throw new ArgumentNullException(nameof(kernel));
 
             return configuration.UseActivator(new NinjectJobActivator(kernel));
         }

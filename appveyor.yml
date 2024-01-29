@@ -1,0 +1,43 @@
+# AppVeyor CI build file, https://ci.appveyor.com/project/odinserj/hangfire
+
+# Notes:
+#   - Minimal appveyor.yml file is an empty file. All sections are optional.
+#   - Indent each level of configuration with 2 spaces. Do not use tabs!
+#   - All section names are case-sensitive.
+#   - Section names should be unique on each level.
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+# Please don't edit it manually, use the `build.bat version` command instead.
+version: 1.2.0-build-0{build}
+
+image: Visual Studio 2022
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+build_script: build.bat
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+test: off
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+artifacts:
+  - path: 'build\**\*.nupkg'
+  - path: 'build\**\*.zip'
+
+deploy:
+  - provider: NuGet
+    api_key: 
+      secure: sE88DSEBBhC+hDgI1+JICzwWjwwmxSyNEWfUjED6ZAs6f9oDD85V0qpbGLWBn+gL
+    on:
+      appveyor_repo_tag: true
