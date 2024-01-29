@@ -155,7 +155,7 @@ namespace Hangfire.Ninject.Tests
             return new NinjectJobActivator(_kernel);
         }
 
-        private class Disposable : IDisposable
+        private sealed class Disposable : IDisposable
         {
             public bool Disposed { get; set; }
 
