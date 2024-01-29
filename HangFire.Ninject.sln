@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.Ninject", "HangFire.Ninject\Hangfire.Ninject.csproj", "{3AAA889A-7C92-4AC3-9017-5CE20A767063}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.Ninject", "src\Hangfire.Ninject\Hangfire.Ninject.csproj", "{3AAA889A-7C92-4AC3-9017-5CE20A767063}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.Ninject.Tests", "HangFire.Ninject.Tests\Hangfire.Ninject.Tests.csproj", "{D8CD1087-F35E-4E9F-9225-B2451FC63D80}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.Ninject.Tests", "tests\Hangfire.Ninject.Tests\Hangfire.Ninject.Tests.csproj", "{D8CD1087-F35E-4E9F-9225-B2451FC63D80}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{166A065E-045E-4D92-8790-C03AE4A8AB24}"
 	ProjectSection(SolutionItems) = preProject

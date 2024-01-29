@@ -7,7 +7,7 @@ using Ninject.Infrastructure;
 namespace Hangfire
 {
     /// <summary>
-    /// HangFire Job Activator based on Ninject IoC Container.
+    /// Hangfire Job Activator based on Ninject IoC Container.
     /// </summary>
     public class NinjectJobActivator : JobActivator
     {
