@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{609F7921
 		src\Directory.Build.props = src\Directory.Build.props
 		nuspecs\Hangfire.Ninject.nuspec = nuspecs\Hangfire.Ninject.nuspec
 		.nuget\packages.config = .nuget\packages.config
+		appveyor.yml = appveyor.yml
 	EndProjectSection
 EndProject
 Global
