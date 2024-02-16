@@ -1,9 +1,9 @@
-Include "packages\Hangfire.Build.0.3.3\tools\psake-common.ps1"
+Include "packages\Hangfire.Build.0.4.1\tools\psake-common.ps1"
 
 Task Default -Depends Pack
 
 Task Test -Depends Compile -Description "Run unit and integration tests." {
-    Exec { dotnet test --no-build -c Release "tests\Hangfire.Ninject.Tests" }
+    Exec { dotnet test --no-build -c release "tests\Hangfire.Ninject.Tests" }
 }
 
 Task Collect -Depends Test -Description "Copy all artifacts to the build folder." {
