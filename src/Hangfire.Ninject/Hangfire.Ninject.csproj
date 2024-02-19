@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFrameworks>net45;net46</TargetFrameworks>
     <RootNamespace>Hangfire</RootNamespace>
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>

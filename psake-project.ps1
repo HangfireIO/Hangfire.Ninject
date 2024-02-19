@@ -8,6 +8,7 @@ Task Test -Depends Compile -Description "Run unit and integration tests." {
 
 Task Collect -Depends Test -Description "Copy all artifacts to the build folder." {
     Collect-Assembly "Hangfire.Ninject" "net45"
+    Collect-Assembly "Hangfire.Ninject" "net46"
     Collect-File "LICENSE"
     Collect-File "README.md"
 }
