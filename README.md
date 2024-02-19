@@ -1,15 +1,17 @@
-Hangfire.Ninject [![Build status](https://ci.appveyor.com/api/projects/status/79opt6sesdam48yq)](https://ci.appveyor.com/project/odinserj/hangfire-ninject)
+Hangfire.Ninject
 ================
 
-[Ninject](http://www.ninject.org/) support for [Hangfire](http://hangfire.io). Provides an implementation of the `JobActivator` class and binding extensions, allowing you to use Ninject IoC container to **resolve job type instances** as well as **control the lifetime** of the related dependencies.
+[![Build status](https://ci.appveyor.com/api/projects/status/79opt6sesdam48yq?svg=true)](https://ci.appveyor.com/project/HangfireIO/hangfire-ninject)
+
+[Ninject](http://www.ninject.org/) support for [Hangfire](https://www.hangfire.io). Provides an implementation of the `JobActivator` class and binding extensions, allowing you to use Ninject IoC container to **resolve job type instances** as well as **control the lifetime** of the related dependencies.
 
 Installation
 --------------
 
 *Hangfire.Ninject* is available as a NuGet Package. Type the following command into NuGet Package Manager Console window to install it:
 
-```
-Install-Package Hangfire.Ninject
+```powershell
+dotnet add package Hangfire.Ninject
 ```
 
 Usage
