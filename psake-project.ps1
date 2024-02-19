@@ -9,6 +9,7 @@ Task Test -Depends Compile -Description "Run unit and integration tests." {
 Task Collect -Depends Test -Description "Copy all artifacts to the build folder." {
     Collect-Assembly "Hangfire.Ninject" "net45"
     Collect-File "LICENSE"
+    Collect-File "README.md"
 }
 
 Task Pack -Depends Collect -Description "Create NuGet packages and archive files." {
