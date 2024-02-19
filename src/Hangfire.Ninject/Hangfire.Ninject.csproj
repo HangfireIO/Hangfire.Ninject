@@ -1,16 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;net46</TargetFrameworks>
+    <TargetFrameworks>net45;net46;netstandard2.0</TargetFrameworks>
     <RootNamespace>Hangfire</RootNamespace>
     <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net45' or '$(TargetFramework)'=='net46'">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
     <PackageReference Include="Hangfire.Core" Version="1.5.0" />
     <PackageReference Include="Ninject" Version="2.0.1.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="5.0.1" NoWarn="NU1903" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <PackageReference Include="Hangfire.Core" Version="1.7.0" />
+    <PackageReference Include="Ninject" Version="3.3.0" />
   </ItemGroup>
 
 </Project>

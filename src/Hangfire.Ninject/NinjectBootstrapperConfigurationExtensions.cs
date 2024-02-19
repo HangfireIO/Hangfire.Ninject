@@ -1,3 +1,5 @@
+#if NET45 || NET46
+
 using System;
 using Ninject;
 
@@ -21,3 +23,5 @@ namespace Hangfire
         }
     }
 }
+
+#endif

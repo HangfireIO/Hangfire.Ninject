@@ -2,6 +2,7 @@ using System;
 using Moq;
 using Ninject;
 using Xunit;
+#pragma warning disable CS0618 // Type or member is obsolete
 
 namespace Hangfire.Ninject.Tests
 {
@@ -137,6 +138,7 @@ namespace Hangfire.Ninject.Tests
             Assert.True(disposable.Disposed);
         }
 
+#if !NET6_0
 #pragma warning disable CS0618 // Type or member is obsolete
         [Fact]
         public void UseNinjectActivator_PassesCorrectActivator()
@@ -149,6 +151,7 @@ namespace Hangfire.Ninject.Tests
             configuration.Verify(x => x.UseActivator(It.IsAny<NinjectJobActivator>()));
         }
 #pragma warning restore CS0618 // Type or member is obsolete
+#endif
 
         private NinjectJobActivator CreateActivator()
         {

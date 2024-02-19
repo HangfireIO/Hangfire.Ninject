@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Ninject;
 using Ninject.Activation.Caching;
@@ -30,10 +30,22 @@ namespace Hangfire
             return _kernel.Get(jobType);
         }
 
+#if NETSTANDARD2_0
+        [Obsolete("Please use the BeginScope(JobActivatorContext) method instead.")]
+#endif
         public override JobActivatorScope BeginScope()
         {
             return new NinjectScope(_kernel);
         }
+
+#if NETSTANDARD2_0
+        public override JobActivatorScope BeginScope(JobActivatorContext context)
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            return BeginScope();
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+#endif
 
         class NinjectScope : JobActivatorScope
         {
