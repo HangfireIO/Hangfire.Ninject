@@ -14,6 +14,19 @@
     <icon>icon.png</icon>
     <copyright>Copyright © 2014-2024 Hangfire OÜ</copyright>
     <tags>Hangfire Ninject IoC</tags>
+    <releaseNotes>https://github.com/HangfireIO/Hangfire.Ninject/releases
+2.0.0
+• Breaking – Use the `NinjectJobActivatorScope.Current` scope instead of the `JobActivatorScope.Current` for deterministic disposal.
+• Added – Add `netstandard2.0` and `net46` targets for newer applications.
+• Fixed – Correct deterministic disposal for async contexts in `net46` and `netstandard2.0` platforms.
+• Project – Add readme and icon for the NuGet package.
+• Project – Sign NuGet and assembly artifacts during the build process with a company's own certificate.
+• Project – Full source link support with embedded symbols and repository-based sources.
+• Project – Require NuGet package signature validation on restore.
+• Project – Use deterministic and locked package restore for dependencies.
+• Project – Enable static analysis via the `Microsoft.CodeAnalysis.NetAnalyzers` package.
+• Project – Modernize the build system and project files to use newest features.
+    </releaseNotes>
     <dependencies>
       <group targetFramework="net45">
         <dependency id="Ninject" version="2.0.1.0" />
