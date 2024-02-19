@@ -34,6 +34,12 @@
         "resolved": "13.0.3",
         "contentHash": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ=="
       },
+      "Ninject": {
+        "type": "Direct",
+        "requested": "[3.3.6, )",
+        "resolved": "3.3.6",
+        "contentHash": "93avazUpbRL3IdwvTQF0DKSQB26TeqwMGhZsQNxi/RLSYewhxBkdGDhwWe9DAIRF1+zKDVMv3XkBk8HobKU6wA=="
+      },
       "xunit": {
         "type": "Direct",
         "requested": "[2.4.0, )",
@@ -93,11 +99,6 @@
           "Microsoft.Build.Tasks.Git": "8.0.0",
           "Microsoft.SourceLink.Common": "8.0.0"
         }
-      },
-      "Ninject": {
-        "type": "Transitive",
-        "resolved": "2.0.1",
-        "contentHash": "vpq0qmA8cxONqEH9s1vGBLnTYDAaSYJcQhWvcViL3YnApcL5mGxLmFut0wr+CF6WlH6I2vwLYiU0KuUkKVJLPg=="
       },
       "Owin": {
         "type": "Transitive",
