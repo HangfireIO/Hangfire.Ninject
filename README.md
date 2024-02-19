@@ -53,12 +53,12 @@ kernel.Bind<JobClass>().ToSelf().InNamedOrBackgroundJobScope(context => context.
 If you are using other scopes in your application, you can construct your own scopes. For example, if you want to define a binding in a background job scope with fallback to thread scope, please use the Ninject's `InScope` method:
 
 ```csharp
-kernel.Bind<JobClass>().ToSelf().InScope(ctx => JobActivatorScope.Current ?? StandardScopeCallbacks.Thread(ctx));
+kernel.Bind<JobClass>().ToSelf().InScope(ctx => NinjectJobActivatorScope.Current ?? StandardScopeCallbacks.Thread(ctx));
 ```
 
 In this case, the instance of the `JobClass` class will be re-used within the HTTP request processing, as well as within the background job processing.
 
-All the `IDisposable` instances of dependencies registered within `JobActivatorScope.Current` will be disposed at the end of background job processing, as written in the *Deterministic Disposal* article.
+All the `IDisposable` instances of dependencies registered within `NinjectJobActivatorScope.Current` will be disposed at the end of background job processing, as written in the *Deterministic Disposal* article.
 
 ### Deterministic Disposal
 

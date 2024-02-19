@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Moq;
 using Ninject;
 using Xunit;
@@ -84,6 +85,24 @@ namespace Hangfire.Ninject.Tests
             }
         }
 
+#if !NET452
+        [Fact]
+        public async Task InBackgroundJobScope_RegistersSameServiceInstance_ForTheSameScopeInstance_InAsyncContext()
+        {
+            _kernel.Bind<object>().ToMethod(c => new object()).InBackgroundJobScope();
+            var activator = CreateActivator();
+
+            using (var scope = activator.BeginScope())
+            {
+                var instance1 = scope.Resolve(typeof(object));
+                await Task.Yield();
+                var instance2 = scope.Resolve(typeof(object));
+
+                Assert.Same(instance1, instance2);
+            }
+        }
+#endif
+
         [Fact]
         public void InBackgroundJobScope_RegistersDifferentServiceInstances_ForDifferentScopeInstances()
         {
@@ -120,6 +139,25 @@ namespace Hangfire.Ninject.Tests
 
             Assert.True(disposable.Disposed);
         }
+
+#if !NET452
+        [Fact]
+        public async Task InstanceRegisteredWith_InBackgroundJobScope_IsDisposedOnScopeDisposal_InAsyncContext()
+        {
+            var disposable = new Disposable();
+            _kernel.Bind<Disposable>().ToMethod(c => disposable).InBackgroundJobScope();
+            var activator = CreateActivator();
+
+            using (var scope = activator.BeginScope())
+            {
+                var instance = scope.Resolve(typeof(Disposable));
+                await Task.Yield();
+                Assert.NotNull(instance);
+            }
+
+            Assert.True(disposable.Disposed);
+        }
+#endif
 
         [Fact]
         public void InstanceRegisteredWith_InNamedOrBackgroundJobScope_IsDisposedOnScopeDisposal()

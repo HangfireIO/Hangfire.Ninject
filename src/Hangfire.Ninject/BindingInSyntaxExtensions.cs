@@ -20,7 +20,7 @@ namespace Hangfire
         public static IBindingNamedWithOrOnSyntax<T> InBackgroundJobScope<T>(this IBindingInSyntax<T> syntax)
         { 
             if (syntax == null) throw new ArgumentNullException(nameof(syntax));
-            return syntax.InScope(c => JobActivatorScope.Current);
+            return syntax.InScope(c => NinjectJobActivatorScope.Current);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Hangfire
         public static IBindingNamedWithOrOnSyntax<T> InNamedOrBackgroundJobScope<T>(this IBindingInSyntax<T> syntax, Func<IContext, object> scopeCallback)
         {
             if (syntax == null) throw new ArgumentNullException(nameof(syntax));
-            return syntax.InScope(context => scopeCallback(context) ?? JobActivatorScope.Current);
+            return syntax.InScope(context => scopeCallback(context) ?? NinjectJobActivatorScope.Current);
         }
     }
 }
