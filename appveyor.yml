@@ -15,11 +15,15 @@ version: 1.2.0-build-0{build}
 
 image: Visual Studio 2022
 
+environment:
+  SIGNPATH_API_TOKEN:
+    secure: Kx2wQ6urXpL5nSn66WXWNP3H0GY8lEqF+k0oljVGrROwQC2ZsvKY7SNIB8ElpVQz
+
 #---------------------------------#
 #       build configuration       #
 #---------------------------------#
 
-build_script: build.bat
+build_script: build.bat sign
 
 #---------------------------------#
 #       tests configuration       #
