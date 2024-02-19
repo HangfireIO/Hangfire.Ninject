@@ -23,6 +23,9 @@ environment:
 #       build configuration       #
 #---------------------------------#
 
+before_build:
+  - ps: Install-Module -Name SignPath
+
 build_script: build.bat sign
 
 #---------------------------------#
