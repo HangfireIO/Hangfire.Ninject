@@ -17,6 +17,7 @@
     <releaseNotes><![CDATA[https://github.com/HangfireIO/Hangfire.Ninject/releases
 2.0.1
 • Fixed – Don't use `ICache.Clear` for deterministic disposal due to possible deadlock problems.
+• Project – Upgrade build scripts to the new PowerShell for faster builds.
 
 2.0.0
 • Breaking – Use the `NinjectJobActivatorScope.Current` scope instead of the `JobActivatorScope.Current` for deterministic disposal.
