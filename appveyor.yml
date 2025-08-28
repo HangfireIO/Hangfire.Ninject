@@ -24,7 +24,7 @@ environment:
 #---------------------------------#
 
 before_build:
-  - pwsh: Install-Module -Name SignPath
+  - pwsh: Install-PSResource -Name SignPath -TrustRepository
 
 build_script: build.bat sign
 
