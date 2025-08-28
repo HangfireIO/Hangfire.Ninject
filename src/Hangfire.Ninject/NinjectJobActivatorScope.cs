@@ -3,11 +3,11 @@
 using System.Threading;
 #endif
 using Ninject;
-using Ninject.Activation.Caching;
+using Ninject.Infrastructure.Disposal;
 
 namespace Hangfire
 {
-    public sealed class NinjectJobActivatorScope : JobActivatorScope
+    public sealed class NinjectJobActivatorScope : JobActivatorScope, INotifyWhenDisposed
     {
 #if !NET45
         private static readonly AsyncLocal<NinjectJobActivatorScope> CurrentScope = new AsyncLocal<NinjectJobActivatorScope>();
@@ -28,6 +28,9 @@ namespace Hangfire
         public new static JobActivatorScope Current => JobActivatorScope.Current;
 #endif
 
+        public bool IsDisposed { get; private set; }
+        public event EventHandler Disposed;
+
         public override object Resolve(Type type)
         {
             return _kernel.Get(type);
@@ -35,7 +38,10 @@ namespace Hangfire
 
         public override void DisposeScope()
         {
-            _kernel.Components.Get<ICache>().Clear(Current);
+            // Deterministic disposal implementation, please see
+            // https://mono.software/2016/04/21/Ninject-ambient-scope-and-deterministic-dispose/
+            IsDisposed = true;
+            Disposed?.Invoke(this, EventArgs.Empty);
 #if !NET45
             CurrentScope.Value = null;
 #endif
