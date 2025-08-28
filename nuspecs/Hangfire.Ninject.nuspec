@@ -12,9 +12,12 @@
     <description>Ninject IoC Container support for Hangfire (background job framework for .NET applications)</description>
     <readme>README.md</readme>
     <icon>icon.png</icon>
-    <copyright>Copyright © 2014-2024 Hangfire OÜ</copyright>
+    <copyright>Copyright © 2014-2025 Hangfire OÜ</copyright>
     <tags>Hangfire Ninject IoC</tags>
-    <releaseNotes>https://github.com/HangfireIO/Hangfire.Ninject/releases
+    <releaseNotes><![CDATA[https://github.com/HangfireIO/Hangfire.Ninject/releases
+2.0.1
+• Fixed – Don't use `ICache.Clear` for deterministic disposal due to possible deadlock problems.
+
 2.0.0
 • Breaking – Use the `NinjectJobActivatorScope.Current` scope instead of the `JobActivatorScope.Current` for deterministic disposal.
 • Added – Add `netstandard2.0` and `net46` targets for newer applications.
@@ -26,6 +29,7 @@
 • Project – Use deterministic and locked package restore for dependencies.
 • Project – Enable static analysis via the `Microsoft.CodeAnalysis.NetAnalyzers` package.
 • Project – Modernize the build system and project files to use newest features.
+]]>
     </releaseNotes>
     <dependencies>
       <group targetFramework="net45">
