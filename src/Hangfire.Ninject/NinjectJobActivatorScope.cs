@@ -36,15 +36,27 @@ namespace Hangfire
             return _kernel.Get(type);
         }
 
-        public override void DisposeScope()
+        public sealed override void DisposeScope()
+        {
+            IsDisposed = true;
+
+            try
+            {
+                PerformDeterministicDisposal();
+            }
+            finally
+            {
+#if !NET45
+                CurrentScope.Value = null;
+#endif
+            }
+        }
+
+        protected virtual void PerformDeterministicDisposal()
         {
             // Deterministic disposal implementation, please see
             // https://mono.software/2016/04/21/Ninject-ambient-scope-and-deterministic-dispose/
-            IsDisposed = true;
             Disposed?.Invoke(this, EventArgs.Empty);
-#if !NET45
-            CurrentScope.Value = null;
-#endif
         }
     }
 }
