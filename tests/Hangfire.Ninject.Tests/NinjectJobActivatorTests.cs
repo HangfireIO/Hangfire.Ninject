@@ -176,6 +176,33 @@ namespace Hangfire.Ninject.Tests
             Assert.True(disposable.Disposed);
         }
 
+        [Fact]
+        public void DisposeScope_DoesNotDeadlocks_WhenSingletonsAreRequested_AndDeactivationMethodIsRegistered()
+        {
+            _kernel.Bind<string>().ToConstant("SomeString").InSingletonScope();
+            
+            _kernel.Bind<IDisposable>()
+                .ToMethod(c => new Disposable())
+                .InBackgroundJobScope()
+                .OnDeactivation((ctx, _) =>
+                {
+                    ctx.Kernel.Get<string>();
+                });
+
+            var activator = CreateActivator();
+
+            Parallel.For(0, 100_000, new ParallelOptions { MaxDegreeOfParallelism = 20 }, _ =>
+            {
+                using (var scope = activator.BeginScope())
+                {
+                    var instance = (IDisposable)scope.Resolve(typeof(IDisposable));
+                    var another = _kernel.Get<string>();
+                    Assert.NotNull(instance);
+                    Assert.NotNull(another);
+                }
+            });
+        }
+
 #if !NET6_0
 #pragma warning disable CS0618 // Type or member is obsolete
         [Fact]
