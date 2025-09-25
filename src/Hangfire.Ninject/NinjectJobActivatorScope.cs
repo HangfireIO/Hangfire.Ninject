@@ -7,7 +7,7 @@ using Ninject.Infrastructure.Disposal;
 
 namespace Hangfire
 {
-    public sealed class NinjectJobActivatorScope : JobActivatorScope, INotifyWhenDisposed
+    public class NinjectJobActivatorScope : JobActivatorScope, INotifyWhenDisposed
     {
 #if !NET45
         private static readonly AsyncLocal<NinjectJobActivatorScope> CurrentScope = new AsyncLocal<NinjectJobActivatorScope>();
