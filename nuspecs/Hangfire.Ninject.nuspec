@@ -15,6 +15,9 @@
     <copyright>Copyright © 2014-2025 Hangfire OÜ</copyright>
     <tags>Hangfire Ninject IoC</tags>
     <releaseNotes><![CDATA[https://github.com/HangfireIO/Hangfire.Ninject/releases
+2.0.2
+• Fixed – Add workaround for a possible deadlock in Ninject when singletons and interceptors are used.
+
 2.0.1
 • Fixed – Don't use `ICache.Clear` for deterministic disposal due to possible deadlock problems.
 • Project – Upgrade build scripts to the new PowerShell for faster builds.
